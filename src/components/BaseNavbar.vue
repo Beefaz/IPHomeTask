@@ -9,24 +9,133 @@ export default {
     const {backgroundColor} = toRefs(props);
 
     return {
-      backgroundColor: backgroundColor
+      backgroundColor,
     }
   }
 }
 </script>
 
 <template>
-  <div
-      class="navbar">
+  <div class="navbar">
+    <div class="navigation-right">
+      <div class="search-wrapper">
+        <input class="search">
+        <img
+            class="magnifier"
+            src="src/assets/images/svg/magnifier.svg"
+            alt=""
+        >
+      </div>
+    </div>
+    <div class="navigation-left">
+      <button
+          type="button"
+          class="notification"
+      >
+        <img src="src/assets/images/svg/notification.svg" alt="">
+      </button>
+      <button
+          type="button"
+          class="message"
+      >
+        <img src="src/assets/images/svg/message.svg" alt="">
+      </button>
+      <div>
+        <button
+            type="button"
+            class="user"
+        >
+          <img
+              class="user--thumbnail"
+              src="src/assets/images/png/user.png"
+              alt=""
+          >
+          Admirra John
+          <img src="src/assets/images/svg/arrow.svg" alt="">
+        </button>
+      </div>
+    </div>
   </div>
 </template>
 
 <style scoped>
 .navbar {
   display: inline-flex;
-  padding-left: 0;
-  flex-direction: column;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.navigation-right {
+  padding: 23px 20px;
+}
+
+@media only screen and (min-width: 834px) {
+  .navigation-right {
+    padding: 23px 50px;
+  }
+}
+
+.search-wrapper {
+  position: relative;
+}
+
+.search {
+  height: 44px;
+  width: 343px;
+  padding: 10px 40px 10px 16px;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  border-radius: 4px;
+  border: 1px solid #E0E0E0;
+  background: #FAFAFA;
+}
+
+.magnifier {
+  position: absolute;
+  right: 10px;
+  bottom: 25%;
+}
+
+.navigation-left {
+  padding: 23px 20px;
+  display: flex;
+  align-items: center;
+  gap: 30px;
+}
+
+@media only screen and (min-width: 834px) {
+  .navigation-left {
+    padding: 24px 50px;
+  }
+}
+
+button {
+  all: unset;
+  display: flex;
+}
+
+img {
+  width: 24px;
+  height: 24px;
+  object-fit: cover;
+}
+
+.user {
+  display: flex;
   justify-content: center;
   align-items: center;
+  gap: 7px;
+  color: #161E54;
+  font-family: Poppins, serif;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: 24px;
+}
+
+.user--thumbnail {
+  width: 42px;
+  height: 42px;
+  object-fit: cover;
 }
 </style>

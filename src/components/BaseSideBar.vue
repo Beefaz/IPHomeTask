@@ -6,7 +6,7 @@ export default {
   components: {BaseSidebarSection},
   setup() {
     return {
-      menuData: menuData
+      menuData
     }
   }
 }
@@ -18,7 +18,10 @@ export default {
       <span class="text">WeHR</span>
     </div>
     <template v-for="({label, links}) in menuData">
-      <BaseSidebarSection :label="label" :links="links"/>
+      <BaseSidebarSection
+          :label="label"
+          :links="links"
+      />
     </template>
   </aside>
 </template>
@@ -26,15 +29,22 @@ export default {
 <style scoped>
 .aside {
   display: flex;
-  width: 242px;
-  height: 100vh;
+  width: min-content;
+  height: 100%;
+  min-height: 100vh;
   padding: 20px 0;
   flex-direction: column;
-  justify-content: center;
+  justify-content: flex-start;
   align-items: center;
   gap: 39px;
   flex-shrink: 0;
   background: #E0E0E0;
+}
+
+@media only screen and (min-width: 834px) {
+  .aside {
+    width: 242px;
+  }
 }
 
 .logo {
@@ -49,9 +59,14 @@ export default {
   color: #000;
   font-feature-settings: 'salt' on, 'liga' off;
   font-family: Poppins, serif;
-  font-size: 36px;
-  font-style: normal;
+  font-size: 20px;
   font-weight: 600;
   line-height: 42px;
+}
+
+@media only screen and (min-width: 834px) {
+  .text {
+    font-size: 36px;
+  }
 }
 </style>

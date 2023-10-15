@@ -10,8 +10,8 @@ export default {
     const {label, links} = toRefs(props);
 
     return {
-      label: label,
-      links: links
+      label,
+      links
     }
   }
 }
@@ -23,11 +23,11 @@ export default {
       {{ label }}
     </div>
     <ul>
-      <li class="aside-section--links" v-for="({image, text}) in links">
-        <a :key="index">
+      <li class="aside-section--links" v-for="({image, text}, index)  in links" :key="index">
+        <a>
           <!--taupiau laiką, įdėjau kaip image, galima pekeisti loaderiu/atskiru failu su importais per v-html arba dėti svg tiesiai į čia, bet užterš kodą...-->
           <img :src="`${'src/assets/images/svg/'+ image}`" alt=""/>
-          <span>{{ text }}</span>
+          <span class="md-visible">{{ text }}</span>
         </a>
       </li>
     </ul>
@@ -42,15 +42,23 @@ export default {
 .aside-section--label {
   padding: 10px 30px;
   display: flex;
+  justify-content: center;
   flex: 1;
   color: #686868;
   text-transform: uppercase;
   font-feature-settings: 'salt' on, 'liga' off;
   font-family: Roboto, serif;
-  font-size: 12px;
-  font-style: normal;
+  font-size: 10px;
   font-weight: 500;
+  text-align: center;
   line-height: 18px;
+}
+
+@media only screen and (min-width: 834px) {
+  .aside-section--label {
+    justify-content: flex-start;
+    font-size: 12px;
+  }
 }
 
 ul {
@@ -63,19 +71,35 @@ a {
   display: flex;
   flex: 1;
   align-items: center;
+  justify-content: center;
   gap: 24px;
   color: #686868;
   font-feature-settings: 'salt' on, 'liga' off;
   font-family: Poppins, serif;
   font-size: 16px;
-  font-style: normal;
   font-weight: 400;
   line-height: 24px;
+}
+
+@media only screen and (min-width: 834px) {
+  a {
+    justify-content: flex-start;
+  }
 }
 
 a:hover {
   color: #FF5151;
   cursor: pointer;
+}
+
+a span {
+  display: none;
+}
+
+@media only screen and (min-width: 834px) {
+  a span {
+    display: inline;
+  }
 }
 
 img {

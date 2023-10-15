@@ -1,15 +1,15 @@
 <script lang="ts">
-import PageMain from "./pages/PageMain.vue";
+import PageDashboard from "./pages/PageDashboard.vue";
 
 export default {
-  components: {PageMain}
+  components: {PageDashboard}
 }
 
 
 </script>
 
 <template>
-  <PageMain/>
+  <PageDashboard/>
 </template>
 
 <style scoped>
