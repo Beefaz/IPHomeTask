@@ -6,6 +6,8 @@ export default {
   props: {
     title: String,
     description: String,
+    rating: Number,
+    price: Number,
     pinnable: Boolean,
     moreOptionsAvailable: Boolean,
   },
@@ -23,7 +25,23 @@ export default {
 <template>
   <div class="list-item">
     <div class="list-item--content">
-      <h2 class="title">{{ title }}</h2>
+      <div class="top-line">
+        <h2 class="top-line--title">
+          {{ title }}
+        </h2>
+        <div
+            v-if="rating"
+            class="top-line--rating"
+        >
+          {{ `⭐${rating}` }}
+        </div>
+        <div
+            v-if="price"
+            class="top-line--price"
+        >
+          {{ `$${price}` }}
+        </div>
+      </div>
       <div class="description">{{ description }}</div>
     </div>
     <div class="list-item--actions">
@@ -55,18 +73,30 @@ export default {
 }
 
 .list-item--content {
+  width: 100%;
   display: flex;
   flex-direction: column;
   gap: 6px;
 }
 
-.title {
+.top-line {
+  display: flex;
+  flex: 1 1 100%;
+}
+
+.top-line--title {
   margin: unset;
+  display: flex;
+  flex: 1 1 100%;
   color: #161E54;
   font-family: Poppins, serif;
   font-size: 16px;
   font-weight: 500;
   line-height: 28px;
+}
+
+.top-line--rating, .top-line--price {
+  margin: 0 5px;
 }
 
 .description {

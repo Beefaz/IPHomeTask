@@ -19,7 +19,7 @@ export default {
   <div class="list-card border-rounded">
     <div class="list-card--header">
       <h2>{{ title }}</h2>
-      <slot name="header-left"/>
+      <slot name="header-right"/>
     </div>
     <div class="list-card--content">
       <slot/>
@@ -55,7 +55,7 @@ export default {
 }
 
 .list-card--content {
-  margin-bottom: 39px;
+  padding-bottom: 39px;
   overflow-y: auto;
 }
 

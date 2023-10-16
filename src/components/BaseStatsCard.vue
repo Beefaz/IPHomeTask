@@ -8,7 +8,10 @@ export default {
     shade: String,
     title: String,
     count: String,
-    description: [] as GenderStatList,
+    description: {
+      type: Array,
+      default: () => [] as GenderStatList,
+    },
     image: String
   },
   setup(props) {
@@ -56,6 +59,13 @@ export default {
   display: flex;
   flex-direction: row;
   justify-content: space-between;
+}
+
+.stats-card--left {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  flex-direction: column;
 }
 
 .title {

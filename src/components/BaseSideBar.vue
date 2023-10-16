@@ -28,7 +28,6 @@ export default {
 
 <style scoped>
 .aside {
-  display: flex;
   width: min-content;
   height: 100%;
   min-height: 100vh;
@@ -39,8 +38,14 @@ export default {
   gap: 39px;
   flex-shrink: 0;
   background: #E0E0E0;
+  display: none;
 }
 
+@media only screen and (min-width: 600px) {
+  .aside {
+    display: flex;
+  }
+}
 @media only screen and (min-width: 834px) {
   .aside {
     width: 242px;

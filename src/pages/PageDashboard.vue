@@ -11,10 +11,14 @@ import {news} from "../dummyData/news.ts";
 import {stats} from "../dummyData/stats.ts";
 import {announcements} from "../dummyData/announcements.ts";
 import {schedule} from "../dummyData/schedule.ts";
+import {callAPI} from "../helperFunctions/callAPI";
+import {computed, ref} from "vue";
+import BaseSelect from "../components/BaseSelect.vue";
 
 
 export default {
   components: {
+    BaseSelect,
     BaseActivityCard,
     BaseListButton,
     BaseListCardItem,
@@ -25,11 +29,57 @@ export default {
     BaseSideBar,
   },
   setup() {
+    callAPI('GET', 'products/category/smartphones')
+        .then(({products}) => {
+          productList.value = products;
+        });
+
+    let productList = ref([]);
+    let selected = ref('id');
+
+    const selectBinds = [
+      {
+        value: 'title',
+        text: 'Title',
+      },
+      {
+        value: 'description',
+        text: 'Description'
+      },
+      {
+        value: 'rating',
+        text: 'Rating'
+      },
+      {
+        value: 'price',
+        text: 'Price',
+      },
+    ];
+
+    const sortByProperty = (key: string | number, list: Array<any>) =>
+        list.sort((a, b) => {
+          if (typeof a === 'number' && typeof b === 'number') return a[key] - b[key];
+
+          const upperA = `${a[key]}`.toUpperCase();
+          const upperB = `${b[key]}`.toUpperCase();
+
+          if (upperA < upperB) return -1;
+          if (upperA > upperB) return 1;
+          return 0;
+        });
+
+    const sortedList = computed(() => sortByProperty(selected.value, productList.value));
+
     return {
       news,
       stats,
       announcements,
-      schedule
+      schedule,
+      productList,
+      selected,
+      sortedList,
+      selectBinds,
+      sortByProperty,
     }
   }
 }
@@ -40,7 +90,6 @@ export default {
     <BaseNavbar/>
 
     <BaseSideBar/>
-
     <main>
       <h1>Dashboard</h1>
 
@@ -68,14 +117,21 @@ export default {
       <section class="announcements">
         <BaseListCard title="Announcement">
           <BaseListCardItem
-              v-for="({title, description, pinnable, moreOptionsAvailable}, index) in announcements"
+              v-for="({id, title, description, rating, price}) in sortedList"
               :title="title"
               :description="description"
-              :pinnable="pinnable"
-              :more-options-available="moreOptionsAvailable"
-              :key="index"
-          >
-          </BaseListCardItem>
+              :rating="rating"
+              :price="price"
+              :pinnable="true"
+              :more-options-available="true"
+              :key="id"
+          />
+          <template v-slot:header-right>
+            <BaseSelect
+                :select-list="selectBinds"
+                @selected="(val)=>this.selected = val"
+            />
+          </template>
           <BaseListButton label="See All Announcements"/>
         </BaseListCard>
       </section>
@@ -86,9 +142,16 @@ export default {
 
       <section class="schedules">
         <BaseListCard title="Upcoming Schedule"
-                      :list="schedule">
-          <div class="list-item-group" v-for="({groupTitle, children}, index) in schedule" :key="`group-${index}`">
-            <div class="list-item-group--title">{{ groupTitle }}</div>
+                      :list="schedule"
+        >
+          <div
+              class="list-item-group"
+              v-for="({groupTitle, children}, index) in schedule"
+              :key="`group-${index}`"
+          >
+            <div class="list-item-group--title">
+              {{ groupTitle }}
+            </div>
             <div class="list-item-group--items">
               <BaseListCardItem
                   v-for="({title, description, pinnable, moreOptionsAvailable}, index) in children"
@@ -97,10 +160,14 @@ export default {
                   :pinnable="pinnable"
                   :more-options-available="moreOptionsAvailable"
                   :key="index"
-              />
+              >
+              </BaseListCardItem>
             </div>
           </div>
-          <BaseListButton label="Creat a New Schedule"/>
+          <template v-slot:header-right>
+            <BaseSelect :select-list="selectBinds"/>
+          </template>
+          <BaseListButton label="Create a New Schedule"/>
         </BaseListCard>
       </section>
     </main>
@@ -129,7 +196,7 @@ main {
 }
 
 main {
-  padding: 10px 20px 33px 20px;
+  padding: 10px 20px 10px 20px;
   display: grid;
   grid-gap: 16px;
   grid-template-areas:
@@ -166,6 +233,7 @@ h1 {
 }
 
 .announcements {
+  max-height: 330px;
   grid-area: announcements;
 }
 
@@ -181,7 +249,8 @@ h1 {
 @media only screen and (min-width: 834px) {
   main {
     padding: 11px 50px 34px 50px;
-    grid-gap: 20px 30px;
+    grid-gap: 15px 30px;
+    grid-template-columns: 1fr 2fr;
     grid-template-areas:
     "title title"
     "news news"
@@ -202,6 +271,7 @@ h1 {
 
 @media only screen and (min-width: 1200px) {
   main {
+    grid-template-columns: 2fr 1fr;
     grid-template-areas:
     "title title"
     "news activities"

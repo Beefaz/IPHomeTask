@@ -6,7 +6,10 @@ import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 export default {
   props: {
     label: String,
-    links: [] as LinkList,
+    links: {
+      type: Array,
+      default: () => [] as LinkList,
+    },
   },
   setup(props) {
     const {label, links} = toRefs(props);
