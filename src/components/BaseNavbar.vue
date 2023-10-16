@@ -1,5 +1,6 @@
 <script lang="ts">
-import {toRefs} from 'vue'
+import {toRefs} from 'vue';
+import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
 export default {
   props: {
@@ -10,6 +11,7 @@ export default {
 
     return {
       backgroundColor,
+      getImageUrl
     }
   }
 }
@@ -22,7 +24,7 @@ export default {
         <input class="search">
         <img
             class="magnifier"
-            :src="`src/assets/images/svg/magnifier.svg`"
+            :src="getImageUrl('images/svg/magnifier.svg')"
             alt=""
         >
       </div>
@@ -32,13 +34,19 @@ export default {
           type="button"
           class="notification"
       >
-        <img :src="`src/assets/images/svg/notification.svg`" alt="">
+        <img
+            :src="getImageUrl('images/svg/notification.svg')"
+            alt=""
+        >
       </button>
       <button
           type="button"
           class="message"
       >
-        <img :src="`src/assets/images/svg/message.svg`" alt="">
+        <img
+            :src="getImageUrl('images/svg/message.svg')"
+            alt=""
+        >
       </button>
       <div>
         <button
@@ -47,11 +55,14 @@ export default {
         >
           <img
               class="user--thumbnail"
-              :src="`src/assets/images/png/user.png`"
+              :src="getImageUrl('images/png/user.png')"
               alt=""
           >
           Admirra John
-          <img :src="`src/assets/images/svg/arrow.svg`" alt="">
+          <img
+              :src="getImageUrl('images/svg/arrow.svg')"
+              alt=""
+          >
         </button>
       </div>
     </div>
