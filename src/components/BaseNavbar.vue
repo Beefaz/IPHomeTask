@@ -11,7 +11,7 @@ export default {
 
     return {
       backgroundColor,
-      getImageUrl
+      getImageUrl,
     }
   }
 }
@@ -24,7 +24,7 @@ export default {
         <input class="search">
         <img
             class="magnifier"
-            :src="getImageUrl('images/svg/magnifier.svg')"
+            :src="getImageUrl('svg/magnifier.svg')"
             alt=""
         >
       </div>
@@ -35,7 +35,7 @@ export default {
           class="notification"
       >
         <img
-            :src="getImageUrl('images/svg/notification.svg')"
+            :src="getImageUrl('svg/notification.svg')"
             alt=""
         >
       </button>
@@ -44,7 +44,7 @@ export default {
           class="message"
       >
         <img
-            :src="getImageUrl('images/svg/message.svg')"
+            :src="getImageUrl('svg/message.svg')"
             alt=""
         >
       </button>
@@ -55,12 +55,12 @@ export default {
         >
           <img
               class="user--thumbnail"
-              :src="getImageUrl('images/png/user.png')"
+              :src="getImageUrl('png/user.png')"
               alt=""
           >
           Admirra John
           <img
-              :src="getImageUrl('images/svg/arrow.svg')"
+              :src="getImageUrl('svg/arrow.svg')"
               alt=""
           >
         </button>

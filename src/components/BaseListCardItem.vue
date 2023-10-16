@@ -1,5 +1,6 @@
 <script lang="ts">
 import {toRefs} from 'vue'
+import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
 export default {
   props: {
@@ -13,6 +14,7 @@ export default {
 
     return {
       title,
+      getImageUrl,
     }
   }
 }
@@ -29,13 +31,13 @@ export default {
           v-if="pinnable"
           type="button"
       >
-        <img :src="`src/assets/images/svg/pin.svg`" alt=""/>
+        <img :src="getImageUrl('svg/pin.svg')" alt=""/>
       </button>
       <button
           v-if="moreOptionsAvailable"
           type="button"
       >
-        <img :src="`src/assets/images/svg/dots.svg`" alt=""/>
+        <img :src="getImageUrl('svg/dots.svg')" alt=""/>
       </button>
     </div>
   </div>

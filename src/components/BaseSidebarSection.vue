@@ -1,6 +1,7 @@
 <script lang="ts">
 import {toRefs} from 'vue'
 import {LinkList} from "../dummyData/menu";
+import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
 export default {
   props: {
@@ -12,7 +13,8 @@ export default {
 
     return {
       label,
-      links
+      links,
+      getImageUrl,
     }
   }
 }
@@ -27,7 +29,7 @@ export default {
       <li class="aside-section--links" v-for="({image, text}, index)  in links" :key="index">
         <a>
           <!--taupiau laiką, įdėjau kaip image, galima pekeisti loaderiu/atskiru failu su importais per v-html arba dėti svg tiesiai į čia, bet užterš kodą...-->
-          <img :src="`${'src/assets/images/svg/'+ image}`" alt=""/>
+          <img :src="getImageUrl('svg/'+`${image}`)" alt=""/>
           <span class="md-visible">{{ text }}</span>
         </a>
       </li>

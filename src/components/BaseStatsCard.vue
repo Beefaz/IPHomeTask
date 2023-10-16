@@ -1,6 +1,7 @@
 <script lang="ts">
 import {toRefs} from 'vue'
 import {GenderStatList} from "../dummyData/stats";
+import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
 export default {
   props: {
@@ -18,7 +19,8 @@ export default {
       title,
       count,
       description,
-      image
+      image,
+      getImageUrl,
     }
   }
 }
@@ -42,7 +44,7 @@ export default {
     </div>
     <div class="stats-card--right">
       <div class="image-container">
-        <img :src="`${'src/assets/images/png/'+ image}`" alt=""/>
+        <img :src="getImageUrl('png/'+`${image}`)" alt=""/>
       </div>
     </div>
   </div>
