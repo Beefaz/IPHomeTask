@@ -1,11 +1,13 @@
 <script lang="ts">
 import {toRefs} from 'vue'
+import {GenderStatList} from "../dummyData/stats";
 
 export default {
   props: {
+    shade: String,
     title: String,
     count: String,
-    description: Array,
+    description: [] as GenderStatList,
     image: String
   },
   setup(props) {

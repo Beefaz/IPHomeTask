@@ -7,10 +7,10 @@ import BaseListCard from "../components/BaseListCard.vue";
 import BaseListCardItem from "../components/BaseListCardItem.vue";
 import BaseListButton from "../components/BaseListButton.vue";
 import BaseActivityCard from "../components/BaseActivityCard.vue";
-import {news} from "../dummyData/news";
-import {stats} from "../dummyData/stats";
-import {announcements} from "../dummyData/announcements";
-import {schedule} from "../dummyData/schedule";
+import {news} from "../dummyData/news.ts";
+import {stats} from "../dummyData/stats.ts";
+import {announcements} from "../dummyData/announcements.ts";
+import {schedule} from "../dummyData/schedule.ts";
 
 
 export default {

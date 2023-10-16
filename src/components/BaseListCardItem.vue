@@ -29,13 +29,13 @@ export default {
           v-if="pinnable"
           type="button"
       >
-        <img src="src/assets/images/svg/pin.svg" alt=""/>
+        <img :src="`src/assets/images/svg/pin.svg`" alt=""/>
       </button>
       <button
           v-if="moreOptionsAvailable"
           type="button"
       >
-        <img src="src/assets/images/svg/dots.svg" alt=""/>
+        <img :src="`src/assets/images/svg/dots.svg`" alt=""/>
       </button>
     </div>
   </div>

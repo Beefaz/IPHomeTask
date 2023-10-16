@@ -3,15 +3,13 @@ import {toRefs} from 'vue'
 
 export default {
   props: {
-    title: String,
-    list: Array,
+    title: String
   },
   setup(props) {
-    const {title, list} = toRefs(props);
+    const {title} = toRefs(props);
 
     return {
       title,
-      list,
     }
   }
 }

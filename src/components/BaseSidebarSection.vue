@@ -1,10 +1,11 @@
 <script lang="ts">
 import {toRefs} from 'vue'
+import {LinkList} from "../dummyData/menu";
 
 export default {
   props: {
     label: String,
-    links: Array,
+    links: [] as LinkList,
   },
   setup(props) {
     const {label, links} = toRefs(props);

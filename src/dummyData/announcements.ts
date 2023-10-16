@@ -1,4 +1,15 @@
-export const announcements = [
+export interface AnnouncementList {
+  [index: number]: AnnouncementObject;
+}
+
+export interface AnnouncementObject {
+  title: string,
+  description: string,
+  pinnable: boolean,
+  moreOptionsAvailable: boolean,
+}
+
+export const announcements = <AnnouncementList>[
   {
     title: 'Outing schedule for every departement',
     description: '5 Minutes ago',

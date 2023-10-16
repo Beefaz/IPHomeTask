@@ -1,7 +1,25 @@
-export const schedule = [
+export interface ScheduleList {
+  [index: number]: {
+    groupTitle: string,
+    children: ChildrenList,
+  };
+}
+
+export interface ChildrenList {
+  [index: number]: ChildrenObject,
+}
+
+export interface ChildrenObject {
+  title: string,
+  description: string,
+  pinnable?: boolean,
+  moreOptionsAvailable: boolean,
+}
+
+export const schedule = <ScheduleList>[
   {
     groupTitle: 'Priority',
-    children: [
+    children: <ChildrenList>[
       {
         title: 'Review candidate applications',
         description: 'Today - 11.30 AM',
@@ -11,7 +29,7 @@ export const schedule = [
   },
   {
     groupTitle: 'Other',
-    children: [
+    children: <ChildrenList>[
       {
         title: 'Interview with candidates',
         description: 'Today - 10.30 AM',
