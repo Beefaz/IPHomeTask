@@ -29,7 +29,11 @@ export default {
       {{ label }}
     </div>
     <ul>
-      <li class="aside-section--links" v-for="({image, text}, index)  in links" :key="index">
+      <li
+          class="aside-section--links"
+          v-for="({image, text}, index) in links"
+          :key="index"
+      >
         <a>
           <!--taupiau laiką, įdėjau kaip image, galima pekeisti loaderiu/atskiru failu su importais per v-html arba dėti svg tiesiai į čia, bet užterš kodą...-->
           <img :src="getImageUrl('svg/'+`${image}`)" alt=""/>

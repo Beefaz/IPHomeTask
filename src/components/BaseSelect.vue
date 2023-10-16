@@ -17,8 +17,8 @@ export default {
       default: ()=> [] as SelectOptionList,
     }
   },
-  setup(){
-    return{
+  setup() {
+    return {
       getImageUrl,
     }
   }

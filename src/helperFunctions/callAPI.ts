@@ -1,5 +1,6 @@
 export const callAPI = async (callMethod: string, url: string, config?: {}) => {
     const defaultConfig = {
+        method: 'GET' && callMethod,
         headers: {
             'Accept': 'application/json, text/plain, */*',
             'Content-Type': 'application/json'
