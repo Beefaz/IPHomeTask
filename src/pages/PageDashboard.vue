@@ -30,9 +30,7 @@ export default {
 
   setup() {
     callAPI('GET', 'products/category/smartphones')
-        .then(({products}) => {
-          productList.value = products;
-        });
+        .then(({products}) => productList.value = products);
 
     let productList = ref([]);
     let selected = ref('id');
@@ -61,9 +59,9 @@ export default {
         selected.value = target.value;
     };
 
-    const sortByProperty = (key: string | number, list: Array<any>) =>
+    const sortByProperty = (key: string | number, list: Array<Record<string|number, any>>) =>
         list.sort((a, b) => {
-          if (typeof a === 'number' && typeof b === 'number') return a[key] - b[key];
+          if (typeof a[key] === 'number' && typeof b[key] === 'number') return a[key] - b[key];
 
           const upperA = `${a[key]}`.toUpperCase();
           const upperB = `${b[key]}`.toUpperCase();
