@@ -1,5 +1,5 @@
 <script lang="ts">
-import {toRefs} from 'vue'
+import {PropType, toRefs} from 'vue'
 import {GenderStatList} from "../dummyData/stats";
 import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
@@ -9,8 +9,8 @@ export default {
     title: String,
     count: String,
     description: {
-      type: Array,
-      default: () => [] as GenderStatList,
+      type: Array as PropType<GenderStatList>,
+      default: () => [] ,
     },
     image: String
   },

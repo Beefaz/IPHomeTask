@@ -11,10 +11,9 @@ import {news} from "../dummyData/news.ts";
 import {stats} from "../dummyData/stats.ts";
 import {announcements} from "../dummyData/announcements.ts";
 import {schedule} from "../dummyData/schedule.ts";
-import {callAPI} from "../helperFunctions/callAPI";
+import {callAPI} from "../helperFunctions/callAPI.ts";
 import {computed, ref} from "vue";
 import BaseSelect from "../components/BaseSelect.vue";
-
 
 export default {
   components: {
@@ -28,6 +27,7 @@ export default {
     BaseNavbar,
     BaseSideBar,
   },
+
   setup() {
     callAPI('GET', 'products/category/smartphones')
         .then(({products}) => {
@@ -56,6 +56,11 @@ export default {
       },
     ];
 
+    const updateSelected = (event: Event) => {
+        const target = event.target as HTMLInputElement;
+        selected.value = target.value;
+    };
+
     const sortByProperty = (key: string | number, list: Array<any>) =>
         list.sort((a, b) => {
           if (typeof a === 'number' && typeof b === 'number') return a[key] - b[key];
@@ -80,6 +85,7 @@ export default {
       sortedList,
       selectBinds,
       sortByProperty,
+      updateSelected
     }
   }
 }
@@ -129,7 +135,7 @@ export default {
           <template v-slot:header-right>
             <BaseSelect
                 :select-list="selectBinds"
-                @selected="(val)=>this.selected = val"
+                @selected="updateSelected"
             />
           </template>
           <BaseListButton label="See All Announcements"/>

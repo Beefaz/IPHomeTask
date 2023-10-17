@@ -1,5 +1,6 @@
 <script lang="ts">
 import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
+import {PropType} from "vue";
 
 interface SelectOptionList {
   [index: number]: SelectOption
@@ -13,8 +14,8 @@ interface SelectOption {
 export default {
   props: {
     selectList: {
-      type: Array,
-      default: ()=> [] as SelectOptionList,
+      type: Array as PropType<SelectOptionList>,
+      default: () => [],
     }
   },
   setup() {
@@ -27,7 +28,7 @@ export default {
 
 <template>
   <div class="select-container">
-    <select @change="$emit('selected', $event.target.value)">
+    <select @change="$emit('selected', $event)">
       <option selected value="000" hidden>Sort by</option>
       <option
           v-for="({value, text}, index) in selectList"
