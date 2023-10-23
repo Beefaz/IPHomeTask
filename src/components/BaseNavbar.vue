@@ -1,5 +1,4 @@
 <script lang="ts">
-import {toRefs} from 'vue';
 import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
 export default {
@@ -7,7 +6,7 @@ export default {
     backgroundColor: String
   },
   setup(props) {
-    const {backgroundColor} = toRefs(props);
+    const {backgroundColor} = props;
 
     return {
       backgroundColor,

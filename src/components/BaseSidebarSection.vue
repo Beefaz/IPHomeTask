@@ -1,5 +1,5 @@
 <script lang="ts">
-import {PropType, toRefs} from 'vue'
+import {PropType} from 'vue'
 import {LinkList} from "../dummyData/menu";
 import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
@@ -12,7 +12,7 @@ export default {
     },
   },
   setup(props) {
-    const {label, links} = toRefs(props);
+    const {label, links} = props;
 
     return {
       label,

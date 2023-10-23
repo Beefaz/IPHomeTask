@@ -32,8 +32,8 @@ export default {
     callAPI('GET', 'products/category/smartphones')
         .then(({products}) => productList.value = products);
 
-    let productList = ref([]);
-    let selected = ref('id');
+    const productList = ref([]);
+    const selected = ref('id');
 
     const selectBinds = [
       {

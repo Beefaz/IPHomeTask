@@ -1,12 +1,11 @@
 <script lang="ts">
-import {toRefs} from 'vue'
 
 export default {
   props: {
     title: String
   },
   setup(props) {
-    const {title} = toRefs(props);
+    const {title} = props;
 
     return {
       title,

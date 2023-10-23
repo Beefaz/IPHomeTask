@@ -1,5 +1,4 @@
 <script lang="ts">
-import {toRefs} from 'vue'
 import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
 export default {
@@ -12,7 +11,7 @@ export default {
     moreOptionsAvailable: Boolean,
   },
   setup(props) {
-    const {title} = toRefs(props);
+    const {title} = props;
 
     return {
       title,

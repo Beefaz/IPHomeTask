@@ -1,5 +1,5 @@
 <script lang="ts">
-import {PropType, toRefs} from 'vue'
+import {PropType} from 'vue'
 import {GenderStatList} from "../dummyData/stats";
 import {getImageUrl} from '../helperFunctions/imageURLBuilder.ts'
 
@@ -15,7 +15,7 @@ export default {
     image: String
   },
   setup(props) {
-    const {shade, title, count, description, image} = toRefs(props);
+    const {shade, title, count, description, image} = props;
 
     return {
       shade,

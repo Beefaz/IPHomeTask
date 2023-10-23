@@ -1,5 +1,4 @@
 <script lang="ts">
-import {toRefs} from 'vue'
 
 export default {
   props: {
@@ -10,7 +9,7 @@ export default {
 
   },
   setup(props) {
-    const {shade, title, count, description} = toRefs(props);
+    const {shade, title, count, description} = props;
 
     return {
       shade,
