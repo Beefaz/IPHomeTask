@@ -1,31 +1,31 @@
 <script lang="ts">
-import BaseNavbar from "../components/BaseNavbar.vue";
-import BaseSideBar from "../components/BaseSideBar.vue";
-import BaseNewsCard from "../components/BaseNewsCard.vue";
-import BaseStatsCard from "../components/BaseStatsCard.vue";
-import BaseListCard from "../components/BaseListCard.vue";
-import BaseListCardItem from "../components/BaseListCardItem.vue";
-import BaseListButton from "../components/BaseListButton.vue";
-import BaseActivityCard from "../components/BaseActivityCard.vue";
+import Navbar from "../components/Navbar.vue";
+import SideBar from "../components/SideBar.vue";
+import NewsCard from "../components/NewsCard.vue";
+import StatsCard from "../components/StatsCard.vue";
+import ListCard from "../components/ListCard.vue";
+import ListCardItem from "../components/ListCardItem.vue";
+import ListButton from "../components/ListButton.vue";
+import ActivityCard from "../components/ActivityCard.vue";
 import {news} from "../dummyData/news.ts";
 import {stats} from "../dummyData/stats.ts";
 import {announcements} from "../dummyData/announcements.ts";
 import {schedule} from "../dummyData/schedule.ts";
 import {callAPI} from "../helperFunctions/callAPI.ts";
 import {computed, ref} from "vue";
-import BaseSelect from "../components/BaseSelect.vue";
+import Select from "../components/Select.vue";
 
 export default {
   components: {
-    BaseSelect,
-    BaseActivityCard,
-    BaseListButton,
-    BaseListCardItem,
-    BaseListCard,
-    BaseStatsCard,
-    BaseNewsCard,
-    BaseNavbar,
-    BaseSideBar,
+    Select,
+    ActivityCard,
+    ListButton,
+    ListCardItem,
+    ListCard,
+    StatsCard,
+    NewsCard,
+    Navbar,
+    SideBar,
   },
 
   setup() {
@@ -91,14 +91,14 @@ export default {
 
 <template>
   <div class="page-wrapper">
-    <BaseNavbar/>
+    <Navbar/>
 
-    <BaseSideBar/>
+    <SideBar/>
     <main>
       <h1>Dashboard</h1>
 
       <section class="news">
-        <BaseNewsCard v-for="({shade, title, count, description}, index) in news"
+        <NewsCard v-for="({shade, title, count, description}, index) in news"
                       :key="index"
                       :shade="shade"
                       :title="title"
@@ -108,7 +108,7 @@ export default {
       </section>
 
       <section class="stats">
-        <BaseStatsCard
+        <StatsCard
             v-for="({title, count, description, image}, index) in stats"
             :key="index"
             :title="title"
@@ -119,8 +119,8 @@ export default {
       </section>
 
       <section class="announcements">
-        <BaseListCard title="Announcement">
-          <BaseListCardItem
+        <ListCard title="Announcement">
+          <ListCardItem
               v-for="({id, title, description, rating, price}) in sortedList"
               :title="title"
               :description="description"
@@ -131,21 +131,21 @@ export default {
               :key="id"
           />
           <template v-slot:header-right>
-            <BaseSelect
+            <Select
                 :select-list="selectBinds"
                 @selected="updateSelected"
             />
           </template>
-          <BaseListButton label="See All Announcements"/>
-        </BaseListCard>
+          <ListButton label="See All Announcements"/>
+        </ListCard>
       </section>
 
       <section class="activities">
-        <BaseActivityCard/>
+        <ActivityCard/>
       </section>
 
       <section class="schedules">
-        <BaseListCard title="Upcoming Schedule"
+        <ListCard title="Upcoming Schedule"
                       :list="schedule"
         >
           <div
@@ -157,7 +157,7 @@ export default {
               {{ groupTitle }}
             </div>
             <div class="list-item-group--items">
-              <BaseListCardItem
+              <ListCardItem
                   v-for="({title, description, pinnable, moreOptionsAvailable}, index) in children"
                   :title="title"
                   :description="description"
@@ -165,14 +165,14 @@ export default {
                   :more-options-available="moreOptionsAvailable"
                   :key="index"
               >
-              </BaseListCardItem>
+              </ListCardItem>
             </div>
           </div>
           <template v-slot:header-right>
-            <BaseSelect :select-list="selectBinds"/>
+            <Select :select-list="selectBinds"/>
           </template>
-          <BaseListButton label="Create a New Schedule"/>
-        </BaseListCard>
+          <ListButton label="Create a New Schedule"/>
+        </ListCard>
       </section>
     </main>
   </div>

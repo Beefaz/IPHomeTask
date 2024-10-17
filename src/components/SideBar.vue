@@ -1,9 +1,9 @@
 <script lang="ts">
-import BaseSidebarSection from "./BaseSidebarSection.vue";
+import SidebarSection from "./SidebarSection.vue";
 import {menuDataList} from "../dummyData/menu.ts"
 
 export default {
-  components: {BaseSidebarSection},
+  components: {SidebarSection},
   setup() {
     return {
       menuDataList
@@ -18,7 +18,7 @@ export default {
       <span class="text">WeHR</span>
     </div>
     <template v-for="({label, links}) in menuDataList">
-      <BaseSidebarSection
+      <SidebarSection
           :label="label"
           :links="links"
       />

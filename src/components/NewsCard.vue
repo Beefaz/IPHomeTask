@@ -32,9 +32,9 @@ export default {
 <style scoped>
 .news-card {
   padding: 12px 20px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
+  display: grid;
+  grid-template-rows: 1fr repeat(2, auto);
+  grid-gap: 16px;
 }
 
 .news-card.orange {
