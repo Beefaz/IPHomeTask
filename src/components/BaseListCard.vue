@@ -40,7 +40,9 @@ export default {
 
 .list-card--header {
   display: flex;
+  align-items: center;
   flex-direction: row;
+  gap: 5px;
   justify-content: space-between;
 }
 
@@ -54,7 +56,7 @@ export default {
 }
 
 .list-card--content {
-  padding-bottom: 39px;
+  margin-bottom: 35px;
   overflow-y: auto;
 }
 

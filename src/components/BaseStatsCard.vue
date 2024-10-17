@@ -109,5 +109,6 @@ export default {
 
 .image-container img {
   object-fit: contain;
+  width: 100%;
 }
 </style>
